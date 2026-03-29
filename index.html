@@ -283,7 +283,10 @@
             <input type="text" placeholder="Full Name">
             <input type="text" placeholder="Email">
             <input type="password" placeholder="Password">
-            <button class="submit-btn" type="button">Register</button>
+
+            <!-- UPDATED BUTTON -->
+            <button class="submit-btn" type="button" onclick="registerUser()">Register</button>
+
             <button class="close-btn" type="button" onclick="closeRegister()">Close</button>
         </div>
     </div>
@@ -300,6 +303,21 @@
         }
         function closeRegister() {
             document.getElementById("registerModal").style.display = "none";
+        }
+
+        /* NEW FUNCTION — Makes Register Button Work */
+        function registerUser() {
+            let name = document.querySelector("#registerModal input[placeholder='Full Name']").value;
+            let email = document.querySelector("#registerModal input[placeholder='Email']").value;
+            let pass = document.querySelector("#registerModal input[placeholder='Password']").value;
+
+            if (name === "" || email === "" || pass === "") {
+                alert("Please fill all fields before registering.");
+                return;
+            }
+
+            alert("Registration successful!");
+            closeRegister();
         }
     </script>
 
