@@ -1,50 +1,278 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>About - Cloud Learning Center</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About – Cloud Learning Center</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        /* Top Red Navigation Bar */
+        .topbar {
+            background: #c8102e;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 40px;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .topbar-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c8102e;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .topbar-center {
+            display: flex;
+            gap: 20px;
+            font-size: 0.95rem;
+        }
+
+        .topbar-center a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .topbar-center a:hover {
+            text-decoration: underline;
+        }
+
+        .topbar-right {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .topbar-right button {
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .topbar-right button.filled {
+            background: white;
+            color: #c8102e;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        /* Content Section */
+        .section {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .mission-box, .team-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Modal Background */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Modal Box */
+        .modal-content {
+            background: white;
+            padding: 25px;
+            width: 320px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .modal-content input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .close-btn {
+            background: red;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .submit-btn {
+            background: #007bff;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
 </head>
+
 <body>
 
-<header>
-    <h1>About Cloud Learning Center</h1>
-</header>
+    <!-- Top Navigation -->
+    <div class="topbar">
+        <div class="topbar-left">
+            <div class="topbar-logo">CL</div>
+            <div>Cloud Learning Center</div>
+        </div>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="courses.html">Courses</a>
-    <a href="fees.html">Fees</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-</nav>
+        <div class="topbar-center">
+            <a href="index.html">Home</a>
+            <a href="aws.html">AWS</a>
+            <a href="azure.html">Azure</a>
+            <a href="azure-ai.html">Azure AI Engineer</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
 
-<div class="container">
-
-    <div class="section">
-        <h2>Who We Are</h2>
-        <p>Cloud Learning Center is dedicated to helping students and professionals build strong cloud careers through high‑quality Azure training.</p>
+        <div class="topbar-right">
+            <button onclick="openLogin()">Login</button>
+            <button class="filled" onclick="openRegister()">Register</button>
+        </div>
     </div>
 
-    <div class="section">
-        <h2>Our Mission</h2>
-        <p>To make cloud education accessible, affordable, and career‑focused.</p>
+    <!-- Hero -->
+    <div class="hero">
+        About Cloud Learning Center
     </div>
 
+    <!-- Mission Section -->
     <div class="section">
-        <h2>Our Approach</h2>
-        <ul>
-            <li>Hands‑on learning</li>
-            <li>Small batch sizes</li>
-            <li>Real‑world case studies</li>
-            <li>Certification‑oriented training</li>
-        </ul>
+        <div class="mission-box">
+            <h2>Our Mission</h2>
+            <p>
+                Cloud Learning Center is dedicated to helping students and professionals master the most in‑demand cloud technologies.
+                We provide high‑quality learning resources for AWS, Azure, Azure AI Engineer, and modern IT skills — all in one place.
+            </p>
+            <p>
+                Our goal is simple: make cloud learning accessible, practical, and career‑focused.
+            </p>
+        </div>
+
+        <!-- Team Section -->
+        <div class="team-box">
+            <h2>Who We Are</h2>
+            <p>
+                We are a passionate group of cloud engineers, trainers, and IT professionals who believe in empowering learners with real‑world skills.
+            </p>
+            <p>
+                Whether you're preparing for certifications, switching careers, or upgrading your skills, we’re here to guide you every step of the way.
+            </p>
+        </div>
     </div>
 
-</div>
+    <footer>
+        © 2024 Cloud Learning Center — Built by PRANAY
+    </footer>
 
-<footer>
-    © 2026 Cloud Learning Center
-</footer>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h3>Login</h3>
+            <input type="text" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <button class="submit-btn">Login</button>
+            <button class="close-btn" onclick="closeLogin()">Close</button>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <h3>Register</h3>
+            <input type="text" placeholder="Full Name">
+            <input type="text" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <button class="submit-btn">Register</button>
+            <button class="close-btn" onclick="closeRegister()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function openLogin() {
+            document.getElementById("loginModal").style.display = "flex";
+        }
+        function closeLogin() {
+            document.getElementById("loginModal").style.display = "none";
+        }
+        function openRegister() {
+            document.getElementById("registerModal").style.display = "flex";
+        }
+        function closeRegister() {
+            document.getElementById("registerModal").style.display = "none";
+        }
+    </script>
 
 </body>
 </html>
