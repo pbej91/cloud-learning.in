@@ -15,7 +15,7 @@
 
         /* Top Red Navigation Bar */
         .topbar {
-            background: #c8102e; /* red */
+            background: #c8102e;
             color: white;
             display: flex;
             align-items: center;
@@ -214,8 +214,8 @@
         </div>
 
         <div class="topbar-right">
-            <button onclick="openLogin()">Login</button>
-            <button class="filled" onclick="openRegister()">Register</button>
+            <button type="button" onclick="openLogin()">Login</button>
+            <button type="button" class="filled" onclick="openRegister()">Register</button>
         </div>
     </div>
 
@@ -270,8 +270,8 @@
             <h3>Login</h3>
             <input type="text" placeholder="Email">
             <input type="password" placeholder="Password">
-            <button class="submit-btn">Login</button>
-            <button class="close-btn" onclick="closeLogin()">Close</button>
+            <button class="submit-btn" type="button">Login</button>
+            <button class="close-btn" type="button" onclick="closeLogin()">Close</button>
         </div>
     </div>
 
@@ -282,8 +282,8 @@
             <input type="text" placeholder="Full Name">
             <input type="text" placeholder="Email">
             <input type="password" placeholder="Password">
-            <button class="submit-btn">Register</button>
-            <button class="close-btn" onclick="closeRegister()">Close</button>
+            <button class="submit-btn" type="button">Register</button>
+            <button class="close-btn" type="button" onclick="closeRegister()">Close</button>
         </div>
     </div>
 
