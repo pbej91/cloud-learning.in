@@ -13,45 +13,87 @@
             color: #333;
         }
 
-        /* Top Navigation */
-        .navbar {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        .navbar button {
-            padding: 10px 18px;
-            margin-left: 10px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .login-btn {
-            background: white;
-            border: 2px solid #007bff;
-            color: #007bff;
-        }
-
-        .register-btn {
-            background: #007bff;
+        /* Top Red Navigation Bar */
+        .topbar {
+            background: #c8102e; /* red */
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 40px;
         }
 
-        /* Header Banner */
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .topbar-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c8102e;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .topbar-center {
+            display: flex;
+            gap: 20px;
+            font-size: 0.95rem;
+        }
+
+        .topbar-center a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .topbar-center a:hover {
+            text-decoration: underline;
+        }
+
+        .topbar-right {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .topbar-right button {
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .topbar-right button.filled {
+            background: white;
+            color: #c8102e;
+        }
+
+        /* Hero */
         .hero {
-            background: #1e3c72; /* fallback color */
             background: linear-gradient(to right, #1e3c72, #2a5298);
-            height: 300px;
+            height: 260px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             font-weight: bold;
-            position: relative;
+            text-align: center;
+            padding: 0 20px;
         }
 
         /* Section Layout */
@@ -112,6 +154,7 @@
             background: rgba(0,0,0,0.6);
             justify-content: center;
             align-items: center;
+            z-index: 1000;
         }
 
         /* Modal Box */
@@ -155,15 +198,30 @@
 
 <body>
 
-    <!-- Top Right Login/Register -->
-    <div class="navbar">
-        <button class="login-btn" onclick="openLogin()">Login</button>
-        <button class="register-btn" onclick="openRegister()">Register</button>
+    <!-- Top Red Navigation -->
+    <div class="topbar">
+        <div class="topbar-left">
+            <div class="topbar-logo">CL</div>
+            <div>Cloud Learning Center</div>
+        </div>
+
+        <div class="topbar-center">
+            <a href="#">Home</a>
+            <a href="#">AWS</a>
+            <a href="#">Azure</a>
+            <a href="#">DevOps</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div class="topbar-right">
+            <button onclick="openLogin()">Login</button>
+            <button class="filled" onclick="openRegister()">Register</button>
+        </div>
     </div>
 
-    <!-- Banner -->
+    <!-- Hero -->
     <div class="hero">
-        Cloud Learning Center
+        Learn Cloud, DevOps & Modern IT Skills
     </div>
 
     <!-- About Section -->
