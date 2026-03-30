@@ -130,6 +130,10 @@
             font-size: 1rem;
         }
 
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+
         .map {
             width: 100%;
             height: 260px;
@@ -221,22 +225,26 @@
     <div class="section">
         <div class="box">
             <h2>Send Us a Message</h2>
-            <input type="text" placeholder="Your Name">
-            <input type="email" placeholder="Your Email">
-            <textarea placeholder="Your Message"></textarea>
-            <button class="submit-btn">Send Message</button>
+
+            <input type="text" id="cName" placeholder="Your Name">
+            <input type="email" id="cEmail" placeholder="Your Email">
+            <textarea id="cMessage" placeholder="Your Message"></textarea>
+
+            <button class="submit-btn" onclick="sendContactEmail()">Send Message</button>
+
+            <p id="statusMsg" style="color: green; font-weight: bold; display:none; margin-top:10px;">
+                Message sent successfully!
+            </p>
         </div>
 
         <!-- Contact Info -->
         <div class="box">
             <h2>Contact Information</h2>
             <p><strong>Email:</strong> bejpranay@gmail.com</p>
-            <p><strong>Phone:</strong> +919874451110,+919933450445 </p>
+            <p><strong>Phone:</strong> +919874451110, +919933450445</p>
             <p><strong>Location:</strong> Kolkata, India</p>
 
-            <div class="map">
-                <!-- Map Placeholder -->
-            </div>
+            <div class="map"></div>
         </div>
     </div>
 
@@ -267,7 +275,42 @@
         </div>
     </div>
 
+    <!-- EMAILJS SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
     <script>
+        /* Initialize EmailJS */
+        (function(){
+            emailjs.init("ve0wSp3LL3AYxQXR2");  /* <-- Replace with your Public Key */
+        })();
+
+        /* SEND CONTACT FORM EMAIL */
+        function sendContactEmail() {
+            let name = document.getElementById("cName").value;
+            let email = document.getElementById("cEmail").value;
+            let message = document.getElementById("cMessage").value;
+
+            if (name.trim() === "" || email.trim() === "" || message.trim() === "") {
+                alert("Please fill all fields.");
+                return;
+            }
+
+            emailjs.send("service_pfmdibd", "template_k4qegl2", {  /* <-- Replace these */
+                name: name,
+                email: email,
+                message: message
+            })
+            .then(function(response) {
+                document.getElementById("statusMsg").style.display = "block";
+                document.getElementById("cName").value = "";
+                document.getElementById("cEmail").value = "";
+                document.getElementById("cMessage").value = "";
+            }, function(error) {
+                alert("Email failed. Check console.");
+                console.log(error);
+            });
+        }
+
         function openLogin() {
             document.getElementById("loginModal").style.display = "flex";
         }
