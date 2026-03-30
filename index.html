@@ -367,16 +367,13 @@ function finalMessage(course) {
 /* SEND WHATSAPP MESSAGE */
 function sendWhatsApp(name, phone, course) {
 
-    // IMPORTANT: Replace with your full WhatsApp number
-    let whatsappNumber = "+919933450445";
+    let whatsappNumber = "+919933450445"; // your number
 
     let message =
         "New Lead from Cloud Learning%0A" +
-        "------------------------%0A" +
         "Name: " + name + "%0A" +
         "Phone: " + phone + "%0A" +
-        "Course: " + course + "%0A" +
-        "------------------------";
+        "Course: " + course;
 
     let url = "https://wa.me/" + whatsappNumber + "?text=" + message;
 
