@@ -293,92 +293,98 @@
         </div>
     </div>
 
+<!-- EMAILJS + CHATBOT SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
 <script>
+    /* Initialize EmailJS */
+    (function(){
+        emailjs.init("PUBLIC_KEY_HERE");  /* <-- Replace with your Public Key */
+    })();
 
-/* Auto-open chatbot after 2 seconds */
-window.onload = function () {
-    setTimeout(() => {
-        document.getElementById("chatbot").style.display = "flex";
-    }, 2000);
-};
+    /* Auto-open chatbot after 2 seconds */
+    window.onload = function () {
+        setTimeout(() => {
+            document.getElementById("chatbot").style.display = "flex";
+        }, 2000);
+    };
 
-/* Minimize / Expand Chatbot */
-function toggleChatbot() {
-    let bot = document.getElementById("chatbot");
-    bot.style.display = (bot.style.display === "none") ? "flex" : "none";
-}
-
-/* STEP 1 — Ask Phone */
-function askPhone() {
-    let name = document.getElementById("chatName").value;
-
-    if (name.trim() === "") {
-        alert("Please enter your name.");
-        return;
+    /* Minimize / Expand Chatbot */
+    function toggleChatbot() {
+        let bot = document.getElementById("chatbot");
+        bot.style.display = (bot.style.display === "none") ? "flex" : "none";
     }
 
-    window.userName = name;
+    /* STEP 1 — Ask Phone */
+    function askPhone() {
+        let name = document.getElementById("chatName").value;
 
-    document.getElementById("chatbotBody").innerHTML = `
-        <p class="bot-msg">Nice to meet you, <strong>${name}</strong>! May I have your phone number?</p>
-        <input type="text" id="chatPhone" placeholder="Enter your phone number">
-        <button class="chatbot-btn" onclick="askCourse()">Next</button>
-    `;
-}
+        if (name.trim() === "") {
+            alert("Please enter your name.");
+            return;
+        }
 
-/* STEP 2 — Ask Course */
-function askCourse() {
-    let phone = document.getElementById("chatPhone").value;
+        window.userName = name;
 
-    if (phone.trim() === "") {
-        alert("Please enter your phone number.");
-        return;
+        document.getElementById("chatbotBody").innerHTML = `
+            <p class="bot-msg">Nice to meet you, <strong>${name}</strong>! May I have your phone number?</p>
+            <input type="text" id="chatPhone" placeholder="Enter your phone number">
+            <button class="chatbot-btn" onclick="askCourse()">Next</button>
+        `;
     }
 
-    window.userPhone = phone;
+    /* STEP 2 — Ask Course */
+    function askCourse() {
+        let phone = document.getElementById("chatPhone").value;
 
-    document.getElementById("chatbotBody").innerHTML = `
-        <p class="bot-msg">Thank you! Which course are you interested in?</p>
-        <button class="chatbot-btn" onclick="finalMessage('AWS')">AWS</button>
-        <button class="chatbot-btn" onclick="finalMessage('Azure')">Azure</button>
-        <button class="chatbot-btn" onclick="finalMessage('AI Engineer')">AI Engineer</button>
-    `;
-}
+        if (phone.trim() === "") {
+            alert("Please enter your phone number.");
+            return;
+        }
 
-/* STEP 3 — WhatsApp Message + Final Message */
-function finalMessage(course) {
+        window.userPhone = phone;
 
-    sendWhatsApp(window.userName, window.userPhone, course);
+        document.getElementById("chatbotBody").innerHTML = `
+            <p class="bot-msg">Thank you! Which course are you interested in?</p>
+            <button class="chatbot-btn" onclick="finalMessage('AWS')">AWS</button>
+            <button class="chatbot-btn" onclick="finalMessage('Azure')">Azure</button>
+            <button class="chatbot-btn" onclick="finalMessage('AI Engineer')">AI Engineer</button>
+        `;
+    }
 
-    document.getElementById("chatbotBody").innerHTML = `
-        <p class="bot-msg">
-            Thank you, <strong>${window.userName}</strong>!  
-            Our team will contact you soon regarding <strong>${course}</strong>.
-        </p>
+    /* STEP 3 — Send Email + Final Message */
+    function finalMessage(course) {
 
-        <p class="bot-msg">
-            For immediate assistance, please contact <strong>99999</strong>.
-        </p>
+        sendEmail(window.userName, window.userPhone, course);
 
-        <p class="bot-msg">Thank you for contacting Cloud Learning!</p>
-    `;
-}
+        document.getElementById("chatbotBody").innerHTML = `
+            <p class="bot-msg">
+                Thank you, <strong>${window.userName}</strong>!  
+                Our team will contact you soon regarding <strong>${course}</strong>.
+            </p>
 
-/* SEND WHATSAPP MESSAGE */
-function sendWhatsApp(name, phone, course) {
+            <p class="bot-msg">
+                For immediate assistance, please contact <strong>99999</strong>.
+            </p>
 
-    let whatsappNumber = "+919933450445"; // your number
+            <p class="bot-msg">Thank you for contacting Cloud Learning!</p>
+        `;
+    }
 
-    let message =
-        "New Lead from Cloud Learning%0A" +
-        "Name: " + name + "%0A" +
-        "Phone: " + phone + "%0A" +
-        "Course: " + course;
+    /* SEND EMAIL USING EMAILJS */
+    function sendEmail(name, phone, course) {
 
-    let url = "https://wa.me/" + whatsappNumber + "?text=" + message;
-
-    window.open(url, "_blank");
-}
+        emailjs.send("service_pfmdibd", "template_k4qegl2", {   /* <-- Replace these */
+            name: name,
+            phone: phone,
+            course: course
+        })
+        .then(function(response) {
+            console.log("Email sent!", response.status, response.text);
+        }, function(error) {
+            console.log("Email failed:", error);
+        });
+    }
 
 </script>
 
