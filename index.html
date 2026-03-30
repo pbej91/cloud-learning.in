@@ -359,7 +359,7 @@
             <p class="bot-msg">Welcome to Cloud Learning Center. I can help you choose the right cloud career path. May I know your name?</p>
 
             <input type="text" id="chatName" placeholder="Enter your name">
-            <button class="chatbot-btn" onclick="startChat()">Start Chat</button>
+            <button class="chatbot-btn" onclick="askPhone()">Next</button>
         </div>
     </div>
 
@@ -419,8 +419,8 @@
             bot.style.display = (bot.style.display === "none") ? "flex" : "none";
         }
 
-        /* Start Chat */
-        function startChat() {
+        /* STEP 1 — Ask Phone */
+        function askPhone() {
             let name = document.getElementById("chatName").value;
 
             if (name.trim() === "") {
@@ -428,31 +428,67 @@
                 return;
             }
 
+            window.userName = name;
+
             document.getElementById("chatbotBody").innerHTML = `
-                <p class="bot-msg">Nice to meet you, <strong>${name}</strong>! How can I guide you today?</p>
-                <button class="chatbot-btn" onclick="replyAWS()">AWS Career Path</button>
-                <button class="chatbot-btn" onclick="replyAzure()">Azure Career Path</button>
-                <button class="chatbot-btn" onclick="replyAI()">AI Engineer Path</button>
+                <p class="bot-msg">Nice to meet you, <strong>${name}</strong>! May I have your phone number?</p>
+                <input type="text" id="chatPhone" placeholder="Enter your phone number">
+                <button class="chatbot-btn" onclick="askCourse()">Next</button>
             `;
         }
 
-        /* Chatbot Replies */
-        function replyAWS() {
-            document.getElementById("chatbotBody").innerHTML += `
-                <p class="bot-msg">AWS is great for beginners. Start with EC2, S3, IAM, and then move to Solutions Architect.</p>
+        /* STEP 2 — Ask Course */
+        function askCourse() {
+            let phone = document.getElementById("chatPhone").value;
+
+            if (phone.trim() === "") {
+                alert("Please enter your phone number.");
+                return;
+            }
+
+            window.userPhone = phone;
+
+            document.getElementById("chatbotBody").innerHTML = `
+                <p class="bot-msg">Thank you! Which course are you interested in?</p>
+                <button class="chatbot-btn" onclick="finalMessage('AWS')">AWS</button>
+                <button class="chatbot-btn" onclick="finalMessage('Azure')">Azure</button>
+                <button class="chatbot-btn" onclick="finalMessage('AI Engineer')">AI Engineer</button>
             `;
         }
 
-        function replyAzure() {
-            document.getElementById("chatbotBody").innerHTML += `
-                <p class="bot-msg">Azure is excellent for enterprise careers. Begin with Azure Fundamentals (AZ‑900).</p>
+        /* STEP 3 — Save to GitHub + Final Message */
+        function finalMessage(course) {
+
+            // SAVE TO GITHUB
+            saveToGitHub(window.userName, window.userPhone, course);
+
+            document.getElementById("chatbotBody").innerHTML = `
+                <p class="bot-msg">
+                    Thank you, <strong>${window.userName}</strong>!  
+                    Our team will contact you soon regarding <strong>${course}</strong>.
+                </p>
+
+                <p class="bot-msg">
+                    For immediate assistance, please contact <strong>99999</strong>.
+                </p>
+
+                <p class="bot-msg">Thank you for contacting Cloud Learning!</p>
             `;
         }
 
-        function replyAI() {
-            document.getElementById("chatbotBody").innerHTML += `
-                <p class="bot-msg">AI Engineer is booming! Learn Azure OpenAI, Cognitive Services, and Machine Learning Studio.</p>
-            `;
+        /* SEND DATA TO GITHUB USING FORMSUBMIT */
+        function saveToGitHub(name, phone, course) {
+            fetch("YOUR_FORM_SUBMIT_GITHUB_URL", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: name,
+                    phone: phone,
+                    course: course
+                })
+            })
+            .then(res => console.log("Saved to GitHub"))
+            .catch(err => console.log("Error:", err));
         }
     </script>
 
