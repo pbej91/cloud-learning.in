@@ -271,7 +271,10 @@
             <h3>Login</h3>
             <input type="text" placeholder="Email">
             <input type="password" placeholder="Password">
-            <button class="submit-btn" type="button">Login</button>
+
+            <!-- UPDATED LOGIN BUTTON -->
+            <button class="submit-btn" type="button" onclick="loginUser()">Login</button>
+
             <button class="close-btn" type="button" onclick="closeLogin()">Close</button>
         </div>
     </div>
@@ -284,7 +287,7 @@
             <input type="text" placeholder="Email">
             <input type="password" placeholder="Password">
 
-            <!-- UPDATED BUTTON -->
+            <!-- UPDATED REGISTER BUTTON -->
             <button class="submit-btn" type="button" onclick="registerUser()">Register</button>
 
             <button class="close-btn" type="button" onclick="closeRegister()">Close</button>
@@ -305,7 +308,7 @@
             document.getElementById("registerModal").style.display = "none";
         }
 
-        /* NEW FUNCTION — Makes Register Button Work */
+        /* REGISTER FUNCTION */
         function registerUser() {
             let name = document.querySelector("#registerModal input[placeholder='Full Name']").value;
             let email = document.querySelector("#registerModal input[placeholder='Email']").value;
@@ -318,6 +321,20 @@
 
             alert("Registration successful!");
             closeRegister();
+        }
+
+        /* LOGIN FUNCTION */
+        function loginUser() {
+            let email = document.querySelector("#loginModal input[placeholder='Email']").value;
+            let pass = document.querySelector("#loginModal input[placeholder='Password']").value;
+
+            if (email === "" || pass === "") {
+                alert("Please enter both email and password.");
+                return;
+            }
+
+            alert("Login successful!");
+            closeLogin();
         }
     </script>
 
