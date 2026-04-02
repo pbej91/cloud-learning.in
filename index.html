@@ -208,6 +208,78 @@
         .chatbot-btn:hover {
             background: #0056b3;
         }
+
+        /* MOVING TECH ANIMATION */
+        .tech-slider {
+            width: 100%;
+            overflow: hidden;
+            background: #ffffff;
+            padding: 12px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tech-track {
+            display: flex;
+            gap: 40px;
+            white-space: nowrap;
+            animation: slide 18s linear infinite;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Section Layout */
+        .section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            width: 280px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 20px 10px 30px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 120px;
+            margin: 10px auto 20px;
+            display: block;
+        }
+
+        .card h3 {
+            margin: 10px 0 5px;
+        }
+
+        .card p {
+            padding: 0 15px;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
     </style>
 </head>
 
@@ -276,6 +348,12 @@
         </div>
     </div>
 
+     <!-- MOVING TECH ANIMATION -->
+    <div class="tech-slider">
+        <div class="tech-track">
+            AWS • Azure • Azure AI • Terraform • DevOps • Kubernetes • Docker • Python • Cloud Engineer • AI Engineer • AWS • Azure • Azure AI • Terraform • DevOps • Kubernetes • Docker • Python • Cloud Engineer • AI Engineer
+        </div>
+    </div>
     <footer>
         © 2026 Cloud Learning Center
     </footer>
